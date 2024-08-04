@@ -1,0 +1,91 @@
+SELECT age, COUNT(*) AS customer_count
+FROM customer_segmentation
+GROUP BY age
+ORDER BY age;
+
+SELECT gender, COUNT(*) AS customer_count
+FROM customer_segmentation
+GROUP BY gender;
+
+SELECT income, COUNT(*) AS customer_count
+FROM customer_segmentation
+GROUP BY income
+ORDER BY income;
+
+SELECT age, AVG(income) AS average_income, AVG(spending_score) AS average_spending_score
+FROM customer_segmentation
+GROUP BY age
+ORDER BY average_income DESC;
+
+SELECT gender, AVG(income) AS average_income, AVG(spending_score) AS average_spending_score
+FROM customer_segmentation
+GROUP BY gender;
+
+SELECT preferred_category, AVG(spending_score) AS average_spending_score, AVG(purchase_frequency) AS average_purchase_frequency
+FROM customer_segmentation
+GROUP BY preferred_category;
+
+SELECT membership_years, AVG(purchase_frequency) AS average_purchase_frequency
+FROM customer_segmentation
+GROUP BY membership_years
+ORDER BY membership_years;
+
+SELECT preferred_category, AVG(last_purchase_amount) AS average_last_purchase_amount
+FROM customer_segmentation
+GROUP BY preferred_category;
+
+SELECT 
+    CASE 
+        WHEN age < 20 THEN 'Teen'
+        WHEN age BETWEEN 20 AND 35 THEN 'Young Adult'
+        WHEN age BETWEEN 36 AND 50 THEN 'Middle-aged'
+        ELSE 'Senior'
+    END AS age_group,
+    COUNT(*) AS customer_count
+FROM customer_segmentation
+GROUP BY age_group
+ORDER BY age_group;
+
+SELECT 
+    CASE 
+        WHEN income < 30000 THEN 'Low Income'
+        WHEN income BETWEEN 30000 AND 70000 THEN 'Middle Income'
+        ELSE 'High Income'
+    END AS income_level,
+    COUNT(*) AS customer_count
+FROM customer_segmentation
+GROUP BY income_level
+ORDER BY income_level;
+
+SELECT 
+    CASE 
+        WHEN spending_score < 30 THEN 'Low Spender'
+        WHEN spending_score BETWEEN 30 AND 70 THEN 'Average Spender'
+        ELSE 'High Spender'
+    END AS spending_level,
+    COUNT(*) AS customer_count
+FROM customer_segmentation
+GROUP BY spending_level
+ORDER BY spending_level;
+
+SELECT *
+FROM customer_segmentation
+WHERE spending_score > 70 AND purchase_frequency > 30;
+
+SELECT membership_years, AVG(spending_score) AS average_spending_score, AVG(purchase_frequency) AS average_purchase_frequency
+FROM customer_segmentation
+GROUP BY membership_years
+ORDER BY membership_years;
+
+SELECT preferred_category, AVG(last_purchase_amount) AS average_last_purchase_amount
+FROM customer_segmentation
+GROUP BY preferred_category;
+
+SELECT preferred_category, AVG(last_purchase_amount) AS average_last_purchase_amount
+FROM customer_segmentation
+GROUP BY preferred_category;
+
+SELECT membership_years, AVG(spending_score) AS average_spending_score, AVG(purchase_frequency) AS average_purchase_frequency
+FROM customer_segmentation
+GROUP BY membership_years
+ORDER BY membership_years;
